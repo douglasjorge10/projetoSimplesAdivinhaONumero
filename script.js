@@ -13,7 +13,7 @@ const menssagems =
         "Mais pra cima",
         "Mais pra baixo",
         "Parabens você acertou!",
-        "Presta atenção! É de 1 a 100"
+        "Presta atenção em suas jogadas! "
     ]
 
 let jogada = Number();
@@ -46,9 +46,9 @@ function jogadaBaixaOuAlta(){
 
     }
 }
-function vitoria(){
-    if(jogada === numAleatorio){
-        pmenssager.innerText = menssagems[3]
+function vitoria(tester){
+    if(jogada == numAleatorio){
+       pmenssager.innerText = menssagems[3]
     }
 }
 // função imprime tentativas anteriores
@@ -63,14 +63,22 @@ function condicionalEntrada(){
         jogada ='';
     }
 }
+//função contra tentativas iguais
+function palpiteIgual() {
 
+    if (containerJogadas.length !== 0) {
+        if (containerJogadas.includes(numJogador.value)){
+            pmenssager.innerText = menssagems[4]
+            jogada='';
+        }
+    }
+}
 butEnviar.addEventListener('click', function(e){
     numJogador.focus()
 
-
     jogada = numJogador.value
+    palpiteIgual()
     containerJogadas.push(jogada)
-
     jogadaBaixaOuAlta()
     condicionalEntrada()
     mostraTentaivas()
