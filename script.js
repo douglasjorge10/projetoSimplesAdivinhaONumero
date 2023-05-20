@@ -13,13 +13,24 @@ const numAleatorio = Math.ceil(Math.random() * 100);
 // menssagens
 const menssagems =
     [
+        //0
         "Fim de jogo! Suas tentativas terminaram. Mais sorte na proxima vez!",
+        //1
         "Mais pra cima",
+        //2
         "Mais pra baixo",
+        //3
         "Parabens você acertou!",
+        //4
         "Presta atenção em suas jogadas! ",
+        //5
         "Tentativa:",
-        "Restao 3 jogadas!"
+        //6
+        "Restao 3 jogadas!",
+        //7
+        "Numero sorteado:",
+        //8
+        "Sua ultima jogada:"
     ]
 
 let jogada = Number();
@@ -37,7 +48,7 @@ function criaTag(pTagNome, pTextoMenssagem){
 // limita jogadas em 10 e encerra o jogo
 function limitDezTentativas(){
     if (containerJogadas.length === 10){
-        spanNumeral.innerText = `${jogada}`
+        spanNumeral.innerText = `${menssagems[7]} ${numAleatorio} ${menssagems[8]} ${jogada}`
         numJogador.disabled=true;
         pmenssager.innerText = menssagems[0]
         reiniciaJogo()
@@ -57,16 +68,14 @@ function jogadaBaixaOuAlta(){
 
 function vitoria(){
     if(jogada == numAleatorio){
-        spanNumeral.innerText = jogada
-       pmenssager.innerText = `${menssagems[3]}`
+        pmenssager.innerText = `${menssagems[3]}`
+        spanNumeral.innerText = `${menssagems[7]} ${jogada}`
         reiniciaJogo()
-
-
     }
 }
 // função imprime tentativas anteriores
 function mostraTentaivas(){
-    criaTag('p', jogada + " ")
+    criaTag('p', `${ jogada} `)
 }
 //função controle de entrada
 function condicionalEntrada(){
