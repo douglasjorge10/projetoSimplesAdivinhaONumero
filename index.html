@@ -9,12 +9,15 @@
   <form id="mainForm">
     <h1>Adivinha o numero</h1>
     <p>Você tera 10 tentativas para acertar um numero aleatorio de 1 a 100. Boa sorte!</p>
-    <label for="inputTentativa">Digite um numero:</label>
+    <p id="contagem"></p>
+    <div class="container">
+      <label for="inputTentativa">Digite um numero:</label>
     <input type="text" id="inputTentativa">
     <button id="butEnviar">Enviar</button>
-    <button id="reset">Reiniciar jogo</button>
+      <button id="reset">Reiniciar jogo</button>
+    </div>
     <p id="pMenssagens"><p id="numeral"></p></p>
-      <p id="contagem"></p>
+
   </form>
   <script src="./script.js"></script>
 </body>

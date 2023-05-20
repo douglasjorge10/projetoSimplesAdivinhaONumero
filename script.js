@@ -35,22 +35,16 @@ const menssagems =
 
 let jogada = Number();
 const containerJogadas = [];
-
-//cria tags de menssagens dinamicamente
-function criaTag(pTagNome, pTextoMenssagem){
-    const pTag = document.createElement(pTagNome)
-    const pTexto = document.createTextNode(pTextoMenssagem);
-
-    const pTagComMenssagem = pTag.appendChild(pTexto)
-    mainForm.appendChild(pTagComMenssagem)
-
-}
 // limita jogadas em 10 e encerra o jogo
 function limitDezTentativas(){
     if (containerJogadas.length === 10){
-        spanNumeral.innerText = `${menssagems[7]} ${numAleatorio} ${menssagems[8]} ${jogada}`
-        numJogador.disabled=true;
         pmenssager.innerText = menssagems[0]
+        pmenssager.style.color="red";
+        pmenssager.style.fontSize="13pt";
+        pmenssager.style.marginTop="10px"
+        spanNumeral.innerText = `${menssagems[7]} ${numAleatorio} ${menssagems[8]} ${jogada}`
+        spanNumeral.style.color="red";
+        spanNumeral.style.fontSize="17pt";
         reiniciaJogo()
 
     }
@@ -59,28 +53,36 @@ function limitDezTentativas(){
 function jogadaBaixaOuAlta(){
     if(numAleatorio < jogada){
         pmenssager.innerText = menssagems[2]
+        pmenssager.style.color="black";
 
     } else if (numAleatorio > jogada){
         pmenssager.innerText = menssagems[1]
+        pmenssager.style.color="black";
 
     }
 }
 
 function vitoria(){
     if(jogada == numAleatorio){
-        pmenssager.innerText = `${menssagems[3]}`
-        spanNumeral.innerText = `${menssagems[7]} ${jogada}`
         reiniciaJogo()
+        pmenssager.innerText = `${menssagems[3]}`
+        pmenssager.style.color="blue";
+        pmenssager.style.fontSize="15pt";
+        pmenssager.style.marginTop="10px"
+        spanNumeral.innerText = ` ${jogada}`
+        spanNumeral.style.color="blue";
+        spanNumeral.style.fontSize="20pt";
     }
 }
 // função imprime tentativas anteriores
 function mostraTentaivas(){
-    criaTag('p', `${ jogada} `)
+   spanNumeral.innerText += " " + jogada
 }
 //função controle de entrada
 function condicionalEntrada(){
     if (isNaN(jogada) || jogada <= 0 || jogada === "" || jogada > 100){
         containerJogadas.pop()
+        pmenssager.style.color="red";
         pmenssager.innerText= menssagems[4]
         jogada ='';
     }
@@ -99,10 +101,13 @@ function palpiteIgual() {
 function jogadasRestante(){
     if (containerJogadas.length === 7){
         pmenssager.innerText = menssagems[6]
+        pmenssager.style.color="red";
+        pmenssager.style.fontSize="13pt";
     }
     contagemJogadas.innerText =  `${menssagems[5]} ${containerJogadas.length}`
 }
 function reiniciaJogo(){
+    numJogador.disabled=true;
     butReset.style.display="inline-block"
     butEnviar.style.display="none";
 
