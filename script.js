@@ -1,8 +1,12 @@
 const numJogador = document.querySelector('#inputTentativa');
 const butEnviar = document.querySelector('#butEnviar');
 const mainForm = document.querySelector('#mainForm');
+const butReset = document.querySelector('#reset');
 
 const pmenssager = document.querySelector('#pMenssagens');
+const spanNumeral = document.querySelector('#numeral')
+const contagemJogadas = document.querySelector('#contagem');
+
 
 const numAleatorio = Math.ceil(Math.random() * 100);
 
@@ -13,7 +17,9 @@ const menssagems =
         "Mais pra cima",
         "Mais pra baixo",
         "Parabens você acertou!",
-        "Presta atenção em suas jogadas! "
+        "Presta atenção em suas jogadas! ",
+        "Tentativa:",
+        "Restao 3 jogadas!"
     ]
 
 let jogada = Number();
@@ -31,8 +37,10 @@ function criaTag(pTagNome, pTextoMenssagem){
 // limita jogadas em 10 e encerra o jogo
 function limitDezTentativas(){
     if (containerJogadas.length === 10){
+        spanNumeral.innerText = `${jogada}`
         numJogador.disabled=true;
         pmenssager.innerText = menssagems[0]
+        reiniciaJogo()
 
     }
 }
@@ -46,9 +54,14 @@ function jogadaBaixaOuAlta(){
 
     }
 }
-function vitoria(tester){
+
+function vitoria(){
     if(jogada == numAleatorio){
-       pmenssager.innerText = menssagems[3]
+        spanNumeral.innerText = jogada
+       pmenssager.innerText = `${menssagems[3]}`
+        reiniciaJogo()
+
+
     }
 }
 // função imprime tentativas anteriores
@@ -73,6 +86,21 @@ function palpiteIgual() {
         }
     }
 }
+// função para imprimir na tela a contagem de tentativas
+function jogadasRestante(){
+    if (containerJogadas.length === 7){
+        pmenssager.innerText = menssagems[6]
+    }
+    contagemJogadas.innerText =  `${menssagems[5]} ${containerJogadas.length}`
+}
+function reiniciaJogo(){
+    butReset.style.display="inline-block"
+    butEnviar.style.display="none";
+
+}
+butReset.addEventListener('click', function (){
+    window.location.reload()
+})
 butEnviar.addEventListener('click', function(e){
     numJogador.focus()
 
@@ -84,7 +112,7 @@ butEnviar.addEventListener('click', function(e){
     mostraTentaivas()
     limitDezTentativas()
     vitoria()
-
+    jogadasRestante()
 
     numJogador.value = ""
     e.preventDefault()
